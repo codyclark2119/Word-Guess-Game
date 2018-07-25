@@ -1,58 +1,114 @@
-var guess = [];
-var correctLetters = [];
-var wordKey = ["victis", "origins", "dempsey", "takeo", "richtophen",
-"nikolai", "maxis", "primis", "ultimis", "monty", "shadowman"];
-var wins = [];
-var remainingGuess = ["10"];
-var losses = [];
+var wordKey = [
+{word: "victis", fact: "Group of surviors surviving in 2025 after the destruction of earth by Dr.Maxis" },
+{word: "origins", fact: "The true starting point of the cycle" },
+{word: "dempsey", fact: "Hard headed American" },
+{word: "takeo", fact: "A strong willed Japanese man" },
+{word: "richtophen", fact: "An evil German scientist" },
+{word: "nikolai", fact: "The alcholic broken hearted Russian" },
+{word: "maxis", fact: "Head of Group 935" },
+{word: "primis", fact: "A new dimensional version of the beloved crew" },
+{word: "ultimis", fact: "The original WW2 crew that annihilated the current of space/time" },
+{word: "monty", fact: "God. Well, not actually but in a way kinda." },
+{word: "shadowman", fact: "The leader of the Apothicons" },
+];
+
+function wordRun() {
+    var generateWord = Math.floor(Math.random() * wordKey.length)
+    var currentWord = wordKey.splice(generateWord, 1)[0];
+    return currentWord;
+}
+
 var guessedLetters = [];
-var i = wordKey[Math.floor(Math.random()*wordKey.length)];
+var guess = "";
+var correctLetters = "";
+var wins = 0;
+var losses = 0;
+var remainingGuess = 0;
+var guessesLeft = 5;
+var wordSplit = [];
+var currentWord;
 
-//word splitter
-var wordSplit = i.split("");
-console.log(wordSplit);
-console.log(i);
+var displayWord = document.getElementById("correct");
+var winCount = document.getElementById("wins");
+var lossCount = document.getElementById("losses");
+var wrongCount = document.getElementById("guessesremaining");
 
+
+function runAgain() {
+    guessedLetters = [];
+    correctLetters = "";
+    currentWord = wordRun();
+    console.log(currentWord);
+
+    remainingGuess = 0;
+    winCount.textContent = "Wins: " + wins;
+    lossCount.textContent = "Losses: " + losses;
+    wrongCount.textContent = "Guesses Left: " + guessesLeft;
+
+
+    for (i = 0; i < currentWord.word.length; i++) {
+        if (currentWord.word.charAt(i) !== " ") {
+            correctLetters += "_";
+            remainingGuess += 1;
+        }
+        else {
+            correctLetters += " ";
+        }
+    }
+    displayWord.textContent =  "Correct Letters: " + correctLetters;
+}
 
 
 //letter guess function
 document.onkeyup = function userGuess(event) {
-    guess = event.key;
-    wordCheck();
-    winLoss();
-}
+    console.log(event.key);
 
-//wordcheck function
-function wordCheck() {
-    for (var x = 0; x < wordSplit.length; x++) {
-        if (guess === wordSplit[x]) {
-            correctLetters[x] = guess;
-            console.log(correctLetters);
+    for (var i = 0; i < guessedLetters.length; i++) {
+        if(guessedLetters[i] === event.key) {
+            alert("You've already guessed this.")
         }
-        
-        else if (wordSplit.indexOf(guess) === -1) {
-            guessedLetters[x] = guess;
-            remainingGuess--;
-            console.log(guessedLetters);
-        }
-
     }
+
+    guessedLetters.push(event.key);
+
+    var templet = "";
+    var correctGuess = false;
+
+    for (var i = 0; i < currentWord.word.length; i++) {
+        console.log(currentWord.word.charAt(i).toUpperCase());
+        if (currentWord.word.charAt(i) === event.key) {
+            templet += currentWord.word.charAt(i);
+            remainingGuess--;
+            correctGuess = true;
+        }
+        else {
+            templet += correctLetters.charAt(i)
+        }
+    }
+
     
-    document.getElementById("wrongletter").innerHTML = "Wrong Guesses: " + guessedLetters.join(" ");
-    document.getElementById("guessesremaining").innerHTML = "Guesses Remaining: " + remainingGuess;
-    document.getElementById("correct").innerHTML = "Correct Guesses: " + correctLetters.join(" ");
-    document.getElementById("wins").innerHTML = "Wins: " + wins;
-    document.getElementById("losses").innerHTML = "Losses: " + losses;
-        
+
+    if (correctGuess === false) {
+        guessesLeft--;
+        wrongCount.textContent = "Guesses Left: " + guessesLeft;
+            if (guessesLeft === 0) {
+                losses++;
+                alert("YOU LOSE");
+            }
+    }
+    else {
+        alert("Correct!");
+    }
+
+    correctLetters = templet;
+    displayWord.textContent = "Correct Letters: " + correctLetters;
+
+    if (remainingGuess === 0) {
+        wins++;
+        guessesLeft = 5;
+        alert("You Win!");
+        runAgain();
+    }
 }
 
-function winLoss() {
-    for (y = 0; y < wordSplit.length; y++)
-        if (correctLetters === wordSplit && remainingGuess > 0) {
-            wins++;
-        }
-        else if (remainingGuess === 0) {
-            losses++;
-        }
-}
-
+runAgain();
