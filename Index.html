@@ -5,32 +5,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/Css/Reset.css" type="text/css">
+    <link rel="stylesheet" href="assets/Css/style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Press+Start+2P" rel="stylesheet">
 </head>
 <body>
 
+<br><br>
+
 <header>
     <div class="container-fluid container-lg">
-        <h1 class="text-center">HANGMAN</h1>
+        <h1 class="text-center">ZOMBIE HANGMAN</h1>
     </div>
 </header>
 
 <div class="container">
     <div class="row">
+
         <div class="col-lg-12">
             <h3 class="text-center">Press a key to make your guess!</h3>
         </div>
-        <div class="col-md-6">
+
+        <div class="container">
+            <div class="row">
+                <div class="text-center col-md-12 correct">
+                    <p id="correct">Correct Guesses: </p>
+                </div>
+            </div>
+        </div> 
+
+        <div class="text-center col-md-4 wins">
             <p id="wins">Wins:</p>
-            <p id="losses">Losses:</p>
-            <p id="guessesremaining">Guesses Remaining: </p>
         </div>
+        <div class="text-center col-md-4 guesses">
+            <p id="guessesremaining">Guesses Remaining: </p>
+        </div>          
+        <div class="text-center col-md-4 losses">
+            <p id="losses">Losses:</p>
+        </div>
+      
     </div>
 </div>
+
 <div class="container">
     <div class="row">
-            <div class="col-md-12">
-                    <p id="correct">Correct Guesses: </p>
-            </div>
+        <div class="text-center col-md-12 hint">
+            <p id="hint">Hint:</p>
+        </div>
     </div>
 </div>
 

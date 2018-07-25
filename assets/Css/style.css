@@ -1,0 +1,47 @@
+body {
+    background-image: url("https://steamuserimages-a.akamaihd.net/ugc/96101729588263074/415E433D6E691065182BC9A7A17E5BF3FC962B43/");
+    background-repeat: no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    overflow: hidden;
+}
+h1{
+    font-size: 450%;
+    margin-top: 25px;
+    font-family: 'Press Start 2P', cursive;
+    color: rgb(230, 230, 0);
+}
+h3 {
+    font-size: 250%;
+    margin-bottom: 25px;
+    font-family: 'Permanent Marker', cursive;
+    color: rgb(230, 230, 0);
+}
+.correct {
+    font-family: 'Press Start 2P', cursive;
+    color: rgb(230, 230, 0);
+    font-size: 300%;
+    margin: 25px;
+    margin-bottom: 50px;
+}
+.wins {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 350%;
+    color: rgb(230, 230, 0);
+}
+.guesses {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 350%;
+    color: rgb(230, 230, 0);
+}
+.losses {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 350%;
+    color: rgb(230, 230, 0);
+}
+.hint {
+    font-family: 'Press Start 2P', cursive;
+    margin-top: 50px;
+    font-size: 350%;
+    color: rgb(230, 230, 0);
+}

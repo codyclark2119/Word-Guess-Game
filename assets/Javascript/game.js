@@ -28,6 +28,8 @@ var guessesLeft = 5;
 var wordSplit = [];
 var currentWord;
 
+
+var displayHint = document.getElementById("hint")
 var displayWord = document.getElementById("correct");
 var winCount = document.getElementById("wins");
 var lossCount = document.getElementById("losses");
@@ -38,12 +40,14 @@ function runAgain() {
     guessedLetters = [];
     correctLetters = "";
     currentWord = wordRun();
+    hint = currentWord.fact;
     console.log(currentWord);
 
     remainingGuess = 0;
     winCount.textContent = "Wins: " + wins;
     lossCount.textContent = "Losses: " + losses;
     wrongCount.textContent = "Guesses Left: " + guessesLeft;
+    displayHint.textContent = "Hint: " + hint;
 
 
     for (i = 0; i < currentWord.word.length; i++) {
@@ -106,7 +110,7 @@ document.onkeyup = function userGuess(event) {
     if (remainingGuess === 0) {
         wins++;
         guessesLeft = 5;
-        alert("You Win!");
+        alert("You Win! The word was: "+ currentWord.word);
         runAgain();
     }
 }
